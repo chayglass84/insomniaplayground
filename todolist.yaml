@@ -22,14 +22,15 @@ spec:
   contents:
     openapi: 3.0.0
     info:
-      title: Simple TODO API
-      version: 1.0.0
-      description: A minimal API to manage a list of TODO items.
+      title: To Do List by Cam
+      version: 1.1.0
+      description: An easy app to manage your todo list and stay on top of what needs
+        to get done when.
       contact:
-        name: API Support
+        name: My Support Dept
         email: support@example.com
     servers:
-      - url: https://api.example.com
+      - url: https://api.todo.com
     tags:
       - name: Todos
         description: Operations related to TODO items
@@ -159,4 +160,4 @@ spec:
   meta:
     id: spc_dc9e8a8bbd56464d87152c8fda35ee35
     created: 1757605541441
-    modified: 1757605541441
+    modified: 1757605854126
