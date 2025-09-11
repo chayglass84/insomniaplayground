@@ -1,5 +1,5 @@
 type: spec.insomnia.rest/5.0
-name: ToDoList
+name: Cam's To Do App
 meta:
   id: wrk_9d2a7cad87b74b9b95b2c94630d16278
   created: 1757605538092
@@ -22,14 +22,14 @@ spec:
   contents:
     openapi: 3.0.0
     info:
-      title: Simple TODO API
-      version: 1.0.0
-      description: A minimal API to manage a list of TODO items.
+      title: Cam's To Do App
+      version: 1.1.0
+      description: An API for Cam's simple to do application.
       contact:
-        name: API Support
-        email: support@example.com
+        name: ToDoSupport
+        email: support@camstodoapp.ca
     servers:
-      - url: https://api.example.com
+      - url: https://api.camstodoapp.ca
     tags:
       - name: Todos
         description: Operations related to TODO items
