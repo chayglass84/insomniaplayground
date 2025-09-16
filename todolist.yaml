@@ -24,11 +24,11 @@ spec:
     info:
       title: To Do List by Cam
       version: 1.1.0
-      description: An easy app to manage your todo list and stay on top of what needs
-        to get done when.
+      description: An easy app to edit your todo list and stay on top of what needs to
+        get done when.
       contact:
-        name: My Support Dept
-        email: support@example.com
+        name: ToDoSupport
+        email: support@camstodoapp.ca
     servers:
       - url: https://api.todo.com
     tags:
@@ -160,4 +160,4 @@ spec:
   meta:
     id: spc_dc9e8a8bbd56464d87152c8fda35ee35
     created: 1757605541441
-    modified: 1757605854126
+    modified: 1757605541441
