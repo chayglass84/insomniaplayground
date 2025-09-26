@@ -23,14 +23,14 @@ spec:
     openapi: 3.0.0
     info:
       title: To Do List by Cam
-      version: 1.1.0
-      description: An easy app to edit your todo list and stay on top of what needs to
-        get done when.
+      version: 1.7.0
+      description: An somewhat easy app to edit your todo list and stay on top of what
+        needs to get done when.
       contact:
         name: ToDoSupport
         email: support@camstodoapp.ca
     servers:
-      - url: https://api.todo.com
+      - url: https://api.2due.com
     tags:
       - name: Todos
         description: Operations related to TODO items
@@ -38,7 +38,7 @@ spec:
       /todos:
         get:
           summary: List all todos
-          description: Returns a list of all TODO items.
+          description: Returns a combination of all TODO items.
           operationId: listTodos
           tags:
             - Todos
@@ -160,4 +160,4 @@ spec:
   meta:
     id: spc_dc9e8a8bbd56464d87152c8fda35ee35
     created: 1757605541441
-    modified: 1757605541441
+    modified: 1758905298508
