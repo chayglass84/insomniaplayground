@@ -1,162 +1,236 @@
-type: spec.insomnia.rest/5.0
-name: Cam's To Do App
-meta:
-  id: wrk_9d2a7cad87b74b9b95b2c94630d16278
-  created: 1757605538092
-  modified: 1757605538092
-  description: ""
-cookieJar:
-  name: Default Jar
-  meta:
-    id: jar_e4be570914652ee3fe074a258912eb7fa6503e4c
-    created: 1757605538098
-    modified: 1757605538098
-environments:
-  name: Base Environment
-  meta:
-    id: env_e4be570914652ee3fe074a258912eb7fa6503e4c
-    created: 1757605538097
-    modified: 1757605538097
-    isPrivate: false
-spec:
-  contents:
-    openapi: 3.0.0
-    info:
-      title: Cam's To Do App
-      version: 1.1.0
-      description: An API for Cam's simple to do application.
-      contact:
-        name: ToDoSupport
-        email: support@camstodoapp.ca
-    servers:
-      - url: https://api.camstodoapp.ca
-    tags:
-      - name: Todos
-        description: Operations related to TODO items
-    paths:
-      /todos:
-        get:
-          summary: List all todos
-          description: Returns a list of all TODO items.
-          operationId: listTodos
-          tags:
-            - Todos
-          responses:
-            "200":
-              description: A JSON array of TODOs
-              content:
-                application/json:
-                  schema:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Todo"
-        post:
-          summary: Create a new todo
-          description: Creates a new TODO item.
-          operationId: createTodo
-          tags:
-            - Todos
-          requestBody:
-            required: true
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/TodoInput"
-          responses:
-            "201":
-              description: The created TODO item
-              content:
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/Todo"
-      /todos/{id}:
-        parameters:
-          - in: path
-            name: id
-            required: true
-            description: The ID of the TODO item
+openapi: 3.0.0
+info:
+  title: To Do Items by Cam H
+  version: 1.8.0
+  description: An somewhat easy app to edit your todo list and stay on top of what needs to
+    get done when.
+  contact:
+    name: 2DueSupport
+    email: support@cams2DueApp.ca
+servers:
+  - url: https://api.2due.com
+tags:
+  - name: Todos
+    description: Operations related to TODO items
+paths:
+  /todos:
+    get:
+      summary: List all todos
+      description: Returns a combination of all TODO items.
+      operationId: listTodos
+      tags:
+        - Todos
+      responses:
+        "200":
+          description: A JSON array of TODOs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+    post:
+      summary: Create a new todo
+      description: Creates a new TODO item.
+      operationId: createTodo
+      tags:
+        - Todos
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-              type: string
-        get:
-          summary: Get a todo by ID
-          description: Retrieves a specific TODO item by its ID.
-          operationId: getTodoById
-          tags:
-            - Todos
-          responses:
-            "200":
-              description: The requested TODO item
-              content:
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/Todo"
-            "404":
-              description: TODO item not found
-        put:
-          summary: Update a todo by ID
-          description: Updates a specific TODO item by its ID.
-          operationId: updateTodo
-          tags:
-            - Todos
-          requestBody:
-            required: true
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/TodoInput"
-          responses:
-            "200":
-              description: The updated TODO item
-              content:
-                application/json:
-                  schema:
-                    $ref: "#/components/schemas/Todo"
-            "404":
-              description: TODO item not found
-        delete:
-          summary: Delete a todo by ID
-          description: Deletes a specific TODO item by its ID.
-          operationId: deleteTodo
-          tags:
-            - Todos
-          responses:
-            "204":
-              description: TODO item deleted
-            "404":
-              description: TODO item not found
-    components:
-      schemas:
-        Todo:
-          type: object
-          description: A TODO item
-          properties:
-            id:
-              type: string
-              description: Unique identifier for the TODO item
-            title:
-              type: string
-              description: The title of the TODO item
-            completed:
-              type: boolean
-              description: Indicates if the TODO item is completed
-          required:
-            - id
-            - title
-            - completed
-        TodoInput:
-          type: object
-          description: Input data for creating or updating a TODO item
-          properties:
-            title:
-              type: string
-              description: The title of the TODO item
-            completed:
-              type: boolean
-              description: Indicates if the TODO item is completed
-          required:
-            - title
-            - completed
-  meta:
-    id: spc_dc9e8a8bbd56464d87152c8fda35ee35
-    created: 1757605541441
-    modified: 1757605541441
+              $ref: "#/components/schemas/TodoInput"
+      responses:
+        "201":
+          description: The created TODO item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+  /todos/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: The ID of the TODO item
+        schema:
+          type: string
+    get:
+      summary: Get a todo by ID
+      description: Retrieves a specific TODO item by its ID.
+      operationId: getTodoById
+      tags:
+        - Todos
+      responses:
+        "200":
+          description: The requested TODO item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: TODO item not found
+    put:
+      summary: Update a todo by ID
+      description: Updates a specific TODO item by its ID.
+      operationId: updateTodo
+      tags:
+        - Todos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TodoInput"
+      responses:
+        "200":
+          description: The updated TODO item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: TODO item not found
+    delete:
+      summary: Delete a todo by ID
+      description: Deletes a specific TODO item by its ID.
+      operationId: deleteTodo
+      tags:
+        - Todos
+      responses:
+        "204":
+          description: TODO item deleted
+        "404":
+          description: TODO item not found
+
+  /todos/overdue:
+    get:
+      summary: List overdue todos
+      description: Returns all TODO items that have a due date before the current date.
+      operationId: listOverdueTodos
+      tags:
+        - Todos
+      responses:
+        "200":
+          description: A JSON array of overdue TODOs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+
+  /todos/{id}/complete:
+    post:
+      summary: Mark a todo as completed
+      description: Marks the specified TODO item as completed.
+      operationId: markTodoComplete
+      tags:
+        - Todos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the TODO item to mark as complete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The updated TODO item, now marked as completed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        "404":
+          description: TODO item not found
+
+  /todos/search:
+    get:
+      summary: Search todos
+      description: Searches for TODO items by title or keyword.
+      operationId: searchTodos
+      tags:
+        - Todos
+      parameters:
+        - in: query
+          name: q
+          required: true
+          description: The search query (keyword or partial title)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Matching TODO items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+
+  /todos/stats:
+    get:
+      summary: Get todo statistics
+      description: Returns counts of total, completed, and pending TODO items.
+      operationId: getTodoStats
+      tags:
+        - Todos
+      responses:
+        "200":
+          description: Basic statistics of TODO items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of TODO items
+                  completed:
+                    type: integer
+                    description: Number of completed TODO items
+                  pending:
+                    type: integer
+                    description: Number of pending TODO items
+
+components:
+  schemas:
+    Todo:
+      type: object
+      description: A TODO item
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the TODO item
+        title:
+          type: string
+          description: The title of the TODO item
+        completed:
+          type: boolean
+          description: Indicates if the TODO item is completed
+        dueDate:
+          type: string
+          format: date-time
+          description: The due date of the TODO item
+      required:
+        - id
+        - title
+        - completed
+    TodoInput:
+      type: object
+      description: Input data for creating or updating a TODO item
+      properties:
+        title:
+          type: string
+          description: The title of the TODO item
+        completed:
+          type: boolean
+          description: Indicates if the TODO item is completed
+        dueDate:
+          type: string
+          format: date-time
+          description: Optional due date for the TODO item
+      required:
+        - title
+        - completed
