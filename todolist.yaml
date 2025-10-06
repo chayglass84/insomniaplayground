@@ -1,5 +1,5 @@
 type: spec.insomnia.rest/5.0
-name: ToDoList
+name: Cam's To Do App
 meta:
   id: wrk_9d2a7cad87b74b9b95b2c94630d16278
   created: 1757605538092
@@ -22,15 +22,14 @@ spec:
   contents:
     openapi: 3.0.0
     info:
-      title: To Do Items by Cam H
-      version: 1.8.0
-      description: An somewhat easy app to edit your todo list and stay on top of what
-        needs to get done when.
+      title: Cam's To Do App
+      version: 1.1.0
+      description: An API for Cam's simple to do application.
       contact:
-        name: 2DueSupport
-        email: support@cams2DueApp.ca
+        name: ToDoSupport
+        email: support@camstodoapp.ca
     servers:
-      - url: https://api.2due.com
+      - url: https://api.camstodoapp.ca
     tags:
       - name: Todos
         description: Operations related to TODO items
@@ -38,7 +37,7 @@ spec:
       /todos:
         get:
           summary: List all todos
-          description: Returns a combination of all TODO items.
+          description: Returns a list of all TODO items.
           operationId: listTodos
           tags:
             - Todos
@@ -125,22 +124,6 @@ spec:
               description: TODO item deleted
             "404":
               description: TODO item not found
-      /todos/completed:
-        get:
-          summary: List completed todos
-          description: Returns all TODO items that have been marked as completed.
-          operationId: listCompletedTodos
-          tags:
-            - Todos
-          responses:
-            "200":
-              description: A JSON array of completed TODOs
-              content:
-                application/json:
-                  schema:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Todo"
     components:
       schemas:
         Todo:
@@ -176,4 +159,4 @@ spec:
   meta:
     id: spc_dc9e8a8bbd56464d87152c8fda35ee35
     created: 1757605541441
-    modified: 1759776631779
+    modified: 1757605541441
