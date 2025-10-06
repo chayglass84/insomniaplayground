@@ -23,7 +23,7 @@ spec:
     openapi: 3.0.0
     info:
       title: ParkEasy API
-      version: 1.0.0
+      version: 1.1.0
       description: A simple API for finding parking lots, reserving spots, and
         managing reservations.
       contact:
@@ -136,6 +136,77 @@ spec:
               description: Reservation cancelled successfully
             "404":
               description: Reservation not found
+        /register:
+          post:
+            summary: Register a new user
+            description: Creates a new user account for accessing the parking system.
+            operationId: registerUser
+            tags:
+              - Authentication
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Alex Park
+                      email:
+                        type: string
+                        format: email
+                        example: alex@parkeasy.app
+                      password:
+                        type: string
+                        format: password
+                        example: mysecurepassword
+                    required:
+                      - name
+                      - email
+                      - password
+            responses:
+              "201":
+                description: User registered successfully
+              "400":
+                description: Invalid input or user already exists
+        /lots/nearby:
+          get:
+            summary: Find nearby parking lots
+            description: Returns parking lots close to the provided location coordinates.
+            operationId: getNearbyLots
+            tags:
+              - Parking
+            parameters:
+              - in: query
+                name: lat
+                required: true
+                schema:
+                  type: number
+                description: Latitude of the user location
+              - in: query
+                name: lng
+                required: true
+                schema:
+                  type: number
+                description: Longitude of the user location
+              - in: query
+                name: radius
+                required: false
+                schema:
+                  type: number
+                  default: 5
+                description: Search radius in kilometers
+            responses:
+              "200":
+                description: List of nearby parking lots
+                content:
+                  application/json:
+                    schema:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/ParkingLot"
+
     components:
       schemas:
         ParkingLot:
