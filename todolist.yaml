@@ -22,13 +22,13 @@ spec:
   contents:
     openapi: 3.0.0
     info:
-      title: To Do List by Cam
-      version: 1.7.0
+      title: To Do Items by Cam H
+      version: 1.8.0
       description: An somewhat easy app to edit your todo list and stay on top of what
         needs to get done when.
       contact:
-        name: ToDoSupport
-        email: support@camstodoapp.ca
+        name: 2DueSupport
+        email: support@cams2DueApp.ca
     servers:
       - url: https://api.2due.com
     tags:
@@ -125,6 +125,22 @@ spec:
               description: TODO item deleted
             "404":
               description: TODO item not found
+      /todos/completed:
+        get:
+          summary: List completed todos
+          description: Returns all TODO items that have been marked as completed.
+          operationId: listCompletedTodos
+          tags:
+            - Todos
+          responses:
+            "200":
+              description: A JSON array of completed TODOs
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Todo"
     components:
       schemas:
         Todo:
@@ -160,4 +176,4 @@ spec:
   meta:
     id: spc_dc9e8a8bbd56464d87152c8fda35ee35
     created: 1757605541441
-    modified: 1758905298508
+    modified: 1759776272972
