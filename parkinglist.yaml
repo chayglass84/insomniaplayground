@@ -34,8 +34,6 @@ spec:
     tags:
       - name: Parking
         description: Operations related to parking lots and reservations
-      - name: Authentication
-        description: For user/account authentication items
     paths:
       /lots:
         get:
@@ -138,42 +136,6 @@ spec:
               description: Reservation cancelled successfully
             "404":
               description: Reservation not found
-      /login:
-        post:
-          summary: User login
-          description: Authenticates a user and returns an access token for future requests.
-          operationId: userLogin
-          tags:
-            - Authentication
-          requestBody:
-            required: true
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    email:
-                      type: string
-                      format: email
-                      example: user@example.com
-                    password:
-                      type: string
-                      format: password
-                      example: secret123
-                  required:
-                    - email
-                    - password
-          responses:
-            "200":
-              description: Successfully authenticated
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      token:
-                        type: string
-                        description: JWT access token
     components:
       schemas:
         ParkingLot:
@@ -247,4 +209,4 @@ spec:
   meta:
     id: spc_fb54069d6b92471aa8204ec46c91768c
     created: 1759776995447
-    modified: 1759777139663
+    modified: 1759776998538
