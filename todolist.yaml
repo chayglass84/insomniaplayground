@@ -103,7 +103,6 @@ paths:
           description: TODO item deleted
         "404":
           description: TODO item not found
-
   /todos/overdue:
     get:
       summary: List overdue todos
@@ -209,10 +208,6 @@ components:
         completed:
           type: boolean
           description: Indicates if the TODO item is completed
-        dueDate:
-          type: string
-          format: date-time
-          description: The due date of the TODO item
       required:
         - id
         - title
@@ -227,10 +222,6 @@ components:
         completed:
           type: boolean
           description: Indicates if the TODO item is completed
-        dueDate:
-          type: string
-          format: date-time
-          description: Optional due date for the TODO item
       required:
         - title
         - completed
