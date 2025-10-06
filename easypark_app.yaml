@@ -1,0 +1,212 @@
+type: spec.insomnia.rest/5.0
+name: EasyParkApp
+meta:
+  id: wrk_45af8938afaa4301abcd370ca6714a30
+  created: 1759784232021
+  modified: 1759784232021
+  description: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_87699fc8541c9518262cd88703b31f88323b1afa
+    created: 1759784232024
+    modified: 1759784232024
+environments:
+  name: Base Environment
+  meta:
+    id: env_87699fc8541c9518262cd88703b31f88323b1afa
+    created: 1759784232024
+    modified: 1759784232024
+    isPrivate: false
+spec:
+  contents:
+    openapi: 3.0.0
+    info:
+      title: ParkEasy API
+      version: 1.0.0
+      description: A simple API for finding parking lots, reserving spots, and
+        managing reservations.
+      contact:
+        name: ParkEasy Support
+        email: support@parkeasy.app
+    servers:
+      - url: https://api.parkeasy.app
+    tags:
+      - name: Parking
+        description: Operations related to parking lots and reservations
+    paths:
+      /lots:
+        get:
+          summary: List all parking lots
+          description: Retrieve a list of all available parking lots.
+          operationId: listLots
+          tags:
+            - Parking
+          responses:
+            "200":
+              description: A list of parking lots
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ParkingLot"
+      /lots/{id}:
+        get:
+          summary: Get details of a parking lot
+          description: Retrieve detailed information about a specific parking lot.
+          operationId: getLotById
+          tags:
+            - Parking
+          parameters:
+            - in: path
+              name: id
+              required: true
+              description: The ID of the parking lot
+              schema:
+                type: string
+          responses:
+            "200":
+              description: Parking lot details
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/ParkingLot"
+            "404":
+              description: Parking lot not found
+      /reservations:
+        post:
+          summary: Create a parking reservation
+          description: Reserve a parking spot in a selected lot.
+          operationId: createReservation
+          tags:
+            - Parking
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/ReservationInput"
+          responses:
+            "201":
+              description: Reservation successfully created
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Reservation"
+      /reservations/{id}:
+        get:
+          summary: Get reservation details
+          description: Retrieve details of a specific parking reservation.
+          operationId: getReservationById
+          tags:
+            - Parking
+          parameters:
+            - in: path
+              name: id
+              required: true
+              description: The ID of the reservation
+              schema:
+                type: string
+          responses:
+            "200":
+              description: Reservation details
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Reservation"
+            "404":
+              description: Reservation not found
+      /reservations/{id}/cancel:
+        post:
+          summary: Cancel a reservation
+          description: Cancel an existing parking reservation.
+          operationId: cancelReservation
+          tags:
+            - Parking
+          parameters:
+            - in: path
+              name: id
+              required: true
+              description: The ID of the reservation to cancel
+              schema:
+                type: string
+          responses:
+            "200":
+              description: Reservation cancelled successfully
+            "404":
+              description: Reservation not found
+    components:
+      schemas:
+        ParkingLot:
+          type: object
+          description: A parking lot
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            location:
+              type: string
+            totalSpots:
+              type: integer
+            availableSpots:
+              type: integer
+          required:
+            - id
+            - name
+            - location
+            - totalSpots
+            - availableSpots
+        Reservation:
+          type: object
+          description: A parking reservation
+          properties:
+            id:
+              type: string
+            lotId:
+              type: string
+            vehiclePlate:
+              type: string
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+            status:
+              type: string
+              enum:
+                - active
+                - cancelled
+                - completed
+          required:
+            - id
+            - lotId
+            - vehiclePlate
+            - startTime
+            - endTime
+            - status
+        ReservationInput:
+          type: object
+          description: Data for creating a new reservation
+          properties:
+            lotId:
+              type: string
+            vehiclePlate:
+              type: string
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+          required:
+            - lotId
+            - vehiclePlate
+            - startTime
+            - endTime
+  meta:
+    id: spc_5ffd7aff91a24079a084c7afec2061f4
+    created: 1759784232023
+    modified: 1759784234404
